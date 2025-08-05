@@ -1,5 +1,6 @@
 package com.hei.school.model;
 
+import com.hei.school.model.enums.VerificationStatus;
 import jakarta.persistence.*;
 import java.time.Instant;
 import java.util.UUID;
@@ -17,7 +18,7 @@ public class Payment {
   private Instant date;
 
   @Column(nullable = false)
-  private String status; // VERIFYING, SUCCEEDED, FAILED
+  private VerificationStatus verificationStatus; // VERIFYING, SUCCEEDED, FAILED
 
   @Column(nullable = false)
   private double amount;
@@ -25,15 +26,33 @@ public class Payment {
   @Column(nullable = false)
   private String method;
 
+  @Column(nullable = false, unique = true)
+  private String pspPaymentId;
+
+  @Column(nullable = false)
+  private String pspType;
+
+  @Column(nullable = false)
+  private String payerEmail;
+
   // Constructeurs
   public Payment() {}
 
-  public Payment(String paymentId, Instant date, String status, double amount, String method) {
+  public Payment(
+      String paymentId,
+      Instant date,
+      VerificationStatus verificationStatus,
+      double amount,
+      String method,
+      String pspType,
+      String payerEmail) {
     this.paymentId = paymentId;
     this.date = date;
-    this.status = status;
+    this.verificationStatus = verificationStatus;
     this.amount = amount;
     this.method = method;
+    this.pspType = pspType;
+    this.payerEmail = payerEmail;
   }
 
   // Getters & Setters
@@ -58,12 +77,12 @@ public class Payment {
     this.date = date;
   }
 
-  public String getStatus() {
-    return status;
+  public VerificationStatus getVerificationStatus() {
+    return verificationStatus;
   }
 
-  public void setStatus(String status) {
-    this.status = status;
+  public void setVerificationStatus(VerificationStatus verificationStatus) {
+    this.verificationStatus = verificationStatus;
   }
 
   public double getAmount() {
@@ -80,5 +99,29 @@ public class Payment {
 
   public void setMethod(String method) {
     this.method = method;
+  }
+
+  public String getPspType() {
+    return pspType;
+  }
+
+  public String getPspPaymentId() {
+    return pspPaymentId;
+  }
+
+  public void setPspPaymentId(String pspPaymentId) {
+    this.pspPaymentId = pspPaymentId;
+  }
+
+  public void setPspType(String pspType) {
+    this.pspType = pspType;
+  }
+
+  public String getPayerEmail() {
+    return payerEmail;
+  }
+
+  public void setPayerEmail(String payerEmail) {
+    this.payerEmail = payerEmail;
   }
 }

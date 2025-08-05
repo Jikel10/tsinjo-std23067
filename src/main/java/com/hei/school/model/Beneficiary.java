@@ -23,6 +23,11 @@ public class Beneficiary {
     this.email = email;
   }
 
+  public Beneficiary(String name) {
+    this.fullName = name;
+    this.email = ""; // ou null, selon ta logique métier
+  }
+
   // Getters & Setters
 
   public UUID getId() {

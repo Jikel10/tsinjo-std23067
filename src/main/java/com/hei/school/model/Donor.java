@@ -23,6 +23,8 @@ public class Donor {
     this.email = email;
   }
 
+  public Donor(String donorName) {}
+
   // Getters & Setters
 
   public UUID getId() {

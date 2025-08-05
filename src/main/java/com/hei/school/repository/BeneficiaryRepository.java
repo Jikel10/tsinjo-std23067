@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BeneficiaryRepository extends JpaRepository<Beneficiary, UUID> {
   Optional<Beneficiary> findByEmail(String email);
+
+  Optional<Beneficiary> findByName(String beneficiaryName);
 }

@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DonorRepository extends JpaRepository<Donor, UUID> {
   Optional<Donor> findByEmail(String email);
+
+  Optional<Donor> findByName(String donorName);
 }

@@ -3,6 +3,7 @@ package com.hei.school.service;
 import com.hei.school.api.PaymentResponse;
 import com.hei.school.api.VolaApiClient;
 import com.hei.school.model.Payment;
+import com.hei.school.model.enums.VerificationStatus;
 import com.hei.school.repository.PaymentRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,7 @@ public class VolaVerifierService {
             volaApiClient.getPayment(p.getPayerEmail(), p.getPspType(), p.getPspPaymentId());
 
         if (!p.getVerificationStatus().equals(reponse.verificationStatus)) {
-          p.setVerificationStatus(reponse.verificationStatus);
+          p.setVerificationStatus(VerificationStatus.valueOf(reponse.verificationStatus));
           paymentRepository.save(p);
           log.info("Paiement {} mis à jour vers {}", p.getId(), reponse.verificationStatus);
         }

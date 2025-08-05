@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tsinjo_prod
+    username: prod_user
+    password: prod_password
+    driver-class-name: org.postgresql.Driver
+
+  flyway:
+    locations: classpath:db/migration,classpath:db/prod
+    baseline-on-migrate: true
