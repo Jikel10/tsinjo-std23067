@@ -10,9 +10,12 @@ CREATE TABLE payment (
                          id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
                          payment_id VARCHAR(255) NOT NULL UNIQUE,
                          date TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-                         status VARCHAR(50) NOT NULL,
+                         verification_status VARCHAR(10) NOT NULL,
                          amount DOUBLE PRECISION NOT NULL,
-                         method VARCHAR(100) NOT NULL
+                         method VARCHAR(100) NOT NULL,
+                         psp_payment VARCHAR(100) NOT NULL,
+                         psp_payment_id VARCHAR(100) NOT NULL,
+                         payer_email VARCHAR(50) NOT NULL
 );
 
 -- Création de la table donation

@@ -45,6 +45,7 @@ public class Payment {
       double amount,
       String method,
       String pspType,
+      String pspPaymentId,
       String payerEmail) {
     this.paymentId = paymentId;
     this.date = date;
@@ -52,6 +53,7 @@ public class Payment {
     this.amount = amount;
     this.method = method;
     this.pspType = pspType;
+    this.pspPaymentId = pspPaymentId;
     this.payerEmail = payerEmail;
   }
 

@@ -3,6 +3,7 @@ package com.hei.school.service;
 import com.hei.school.model.Donation;
 import com.hei.school.model.Donor;
 import com.hei.school.model.Payment;
+import com.hei.school.model.enums.VerificationStatus;
 import com.hei.school.repository.DonationRepository;
 import com.hei.school.repository.DonorRepository;
 import com.hei.school.repository.PaymentRepository;
@@ -28,23 +29,33 @@ public class DonationService {
 
   @Transactional
   public Donation createDonation(
-      String fullName, String email, double amount, String paymentMethod, String paymentId) {
+      String fullName,
+      String email,
+      double amount,
+      String paymentMethod,
+      String paymentId,
+      String pspType,
+      String pspPaymentId,
+      String payerEmail) {
 
     // Cherche ou crée le donateur
     Donor donor =
         donorRepository
             .findByEmail(email)
-            .orElseGet(
-                () -> {
-                  Donor newDonor = new Donor(fullName, email);
-                  return donorRepository.save(newDonor);
-                });
+            .orElseGet(() -> donorRepository.save(new Donor(fullName, email)));
 
-    // Crée un Payment avec statut VERIFYING (paiement en cours de validation)
-    Payment payment = new Payment(paymentId, Instant.now(), "VERIFYING", amount, paymentMethod);
+    Payment payment =
+        new Payment(
+            paymentId,
+            Instant.now(),
+            VerificationStatus.VERIFYING,
+            amount,
+            paymentMethod,
+            pspType,
+            pspPaymentId,
+            payerEmail);
     paymentRepository.save(payment);
 
-    // Crée le don lié
     Donation donation = new Donation(donor, Instant.now(), amount, paymentMethod, payment);
     return donationRepository.save(donation);
   }

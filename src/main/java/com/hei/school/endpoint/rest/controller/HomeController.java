@@ -5,6 +5,7 @@ import com.hei.school.model.Donation;
 import com.hei.school.model.Donor;
 import com.hei.school.model.Help;
 import com.hei.school.model.Payment;
+import com.hei.school.model.enums.VerificationStatus;
 import com.hei.school.repository.BeneficiaryRepository;
 import com.hei.school.repository.DonationRepository;
 import com.hei.school.repository.DonorRepository;
@@ -75,7 +76,7 @@ public class HomeController {
 
     // Crée le Payment lié
     Payment payment = new Payment();
-    payment.setStatus("VERIFYING");
+    payment.setVerificationStatus(VerificationStatus.VERIFYING);
     payment.setDate(Instant.now());
     payment = paymentRepository.save(payment);
 
@@ -101,7 +102,7 @@ public class HomeController {
 
     // Crée le Payment lié
     Payment payment = new Payment();
-    payment.setStatus("VERIFYING");
+    payment.setVerificationStatus(VerificationStatus.VERIFYING);
     payment.setDate(Instant.now());
     payment = paymentRepository.save(payment);
 

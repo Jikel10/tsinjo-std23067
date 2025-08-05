@@ -1,7 +1,7 @@
 package com.hei.school.model.enums;
 
 public enum VerificationStatus {
-  VERIFIYNG,
+  VERIFYING,
   SUCCEEDED,
   FAILED,
 }
