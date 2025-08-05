@@ -1,0 +1,10 @@
+vola:
+  base-url: ${VOLA_URL}
+  api-key: ${VOLA_API_KEY}
+
+# Pour activer le cron
+spring:
+  task:
+    scheduling:
+      pool:
+        size: 1
