@@ -109,7 +109,6 @@ jacocoTestReport {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 
@@ -124,7 +123,6 @@ dependencies {
     implementation 'software.amazon.awssdk:ses:2.21.40'
     implementation 'software.amazon.awssdk:core:2.21.40'
 
-    implementation 'jakarta.transaction:jakarta.transaction-api:2.0.1'
     implementation 'jakarta.mail:jakarta.mail-api:2.1.2'
     implementation 'jakarta.activation:jakarta.activation-api:2.1.2'
     implementation 'com.sun.mail:jakarta.mail:2.0.1'
